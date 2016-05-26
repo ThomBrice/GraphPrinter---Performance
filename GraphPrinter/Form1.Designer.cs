@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.FullStackedLineSeriesView fullStackedLineSeriesView1 = new DevExpress.XtraCharts.FullStackedLineSeriesView();
+            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.StackedLineSeriesLabel stackedLineSeriesLabel1 = new DevExpress.XtraCharts.StackedLineSeriesLabel();
+            DevExpress.XtraCharts.FullStackedLineSeriesView fullStackedLineSeriesView2 = new DevExpress.XtraCharts.FullStackedLineSeriesView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
@@ -39,12 +45,21 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.acquisitionTab = new DevExpress.XtraTab.XtraTabPage();
             this.graphiqueTab = new DevExpress.XtraTab.XtraTabPage();
+            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.acquisitionTab.SuspendLayout();
+            this.graphiqueTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(fullStackedLineSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(stackedLineSeriesLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(fullStackedLineSeriesView2)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -100,6 +115,7 @@
             this.simpleButton2.Size = new System.Drawing.Size(151, 58);
             this.simpleButton2.TabIndex = 2;
             this.simpleButton2.Text = "Ajouter au\r\nGraphique";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // xtraTabControl1
             // 
@@ -137,16 +153,38 @@
             // 
             // graphiqueTab
             // 
+            this.graphiqueTab.Controls.Add(this.chartControl1);
             this.graphiqueTab.Image = ((System.Drawing.Image)(resources.GetObject("graphiqueTab.Image")));
             this.graphiqueTab.Name = "graphiqueTab";
             this.graphiqueTab.Size = new System.Drawing.Size(1737, 662);
             this.graphiqueTab.Text = "Graphiques";
             // 
+            // chartControl1
+            // 
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.chartControl1.Diagram = xyDiagram1;
+            this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Name = "chartControl1";
+            series1.Name = "Series 1";
+            series1.View = fullStackedLineSeriesView1;
+            stackedLineSeriesLabel1.Angle = 90;
+            stackedLineSeriesLabel1.Position = DevExpress.XtraCharts.PointLabelPosition.Center;
+            series2.Label = stackedLineSeriesLabel1;
+            series2.Name = "Series 2";
+            series2.View = fullStackedLineSeriesView2;
+            this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series1,
+        series2};
+            this.chartControl1.Size = new System.Drawing.Size(1737, 662);
+            this.chartControl1.TabIndex = 0;
+            // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage3.Image")));
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1739, 666);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1737, 662);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
             // Form1
@@ -166,6 +204,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.acquisitionTab.ResumeLayout(false);
+            this.graphiqueTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(fullStackedLineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(stackedLineSeriesLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(fullStackedLineSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -181,5 +227,6 @@
         private DevExpress.XtraTab.XtraTabPage acquisitionTab;
         private DevExpress.XtraTab.XtraTabPage graphiqueTab;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private DevExpress.XtraCharts.ChartControl chartControl1;
     }
 }

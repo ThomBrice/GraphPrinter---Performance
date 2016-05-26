@@ -4,7 +4,7 @@ using DevExpress.XtraEditors;
 using System.Data;
 using System.Windows.Forms;
 using DevExpress.XtraGrid;
-
+using DevExpress.XtraCharts;
 
 namespace GraphPrinter
 {
@@ -18,6 +18,7 @@ namespace GraphPrinter
         public Form1()
         {
             InitializeComponent();
+            acquisitionTab.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -42,5 +43,17 @@ namespace GraphPrinter
                 SqlHelper.UpdateBDDEntete();
             }
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            foreach(int i in gridView1.GetSelectedRows())
+            {
+                DataRow dataRow = SqlHelper.DataSetEntete.Tables["Entête"].Rows[i];
+                id = Int32.Parse(dataRow["ID"].ToString());
+                SqlHelper.UpdateDataSetDonnee(id);
+            }
+
+        }        
     }
 }

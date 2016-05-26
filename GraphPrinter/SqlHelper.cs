@@ -9,6 +9,7 @@ namespace GraphPrinter
     {
         #region variables;
         public DataSet DataSetEntete = new DataSet();
+        public DataSet DataSetDonnee = new DataSet();
         SqlConnection connexionBanc = new SqlConnection(Properties.Settings.Default.StrConnDonn);
         #endregion;
 
@@ -89,6 +90,18 @@ namespace GraphPrinter
             adapter.DeleteCommand = MyDeleteCommand;
 
             return adapter;
+        }
+
+        public void UpdateDataSetDonnee(int id)
+        {
+            String query = "Select * From Données Where ID = " + id;
+            if (this.OpenConnexion(connexionBanc) == true)
+            {
+                SqlCommand cmd = new SqlCommand(query, connexionBanc);
+                SqlDataAdapter adapteur = new SqlDataAdapter(cmd);
+                adapteur.Fill(DataSetDonnee, id.ToString());
+                this.CloseConnexion(connexionBanc);
+            }
         }
     }
 }
