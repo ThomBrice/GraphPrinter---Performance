@@ -35,11 +35,15 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.SupprClientButton = new DevExpress.XtraEditors.SimpleButton();
+            this.AddGraphButton = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.acquisitionTab = new DevExpress.XtraTab.XtraTabPage();
             this.graphiqueTab = new DevExpress.XtraTab.XtraTabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SourceBox = new System.Windows.Forms.ComboBox();
+            this.Offset = new DevExpress.XtraEditors.TextEdit();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -48,6 +52,8 @@
             this.xtraTabControl1.SuspendLayout();
             this.acquisitionTab.SuspendLayout();
             this.graphiqueTab.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Offset.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
             this.SuspendLayout();
@@ -83,29 +89,29 @@
             // 
             this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2016 Colorful";
             // 
-            // simpleButton1
+            // SupprClientButton
             // 
-            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.simpleButton1.Location = new System.Drawing.Point(0, 0);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(119, 58);
-            this.simpleButton1.TabIndex = 1;
-            this.simpleButton1.Text = " Supprimer\r\nAcquisition";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.SupprClientButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.SupprClientButton.Image = ((System.Drawing.Image)(resources.GetObject("SupprClientButton.Image")));
+            this.SupprClientButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.SupprClientButton.Location = new System.Drawing.Point(0, 0);
+            this.SupprClientButton.Name = "SupprClientButton";
+            this.SupprClientButton.Size = new System.Drawing.Size(119, 58);
+            this.SupprClientButton.TabIndex = 1;
+            this.SupprClientButton.Text = " Supprimer\r\nAcquisition";
+            this.SupprClientButton.Click += new System.EventHandler(this.SupprClientButton_Click);
             // 
-            // simpleButton2
+            // AddGraphButton
             // 
-            this.simpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
-            this.simpleButton2.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.simpleButton2.Location = new System.Drawing.Point(139, -1);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(151, 58);
-            this.simpleButton2.TabIndex = 2;
-            this.simpleButton2.Text = "Ajouter au\r\nGraphique";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.AddGraphButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.AddGraphButton.Image = ((System.Drawing.Image)(resources.GetObject("AddGraphButton.Image")));
+            this.AddGraphButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.AddGraphButton.Location = new System.Drawing.Point(139, -1);
+            this.AddGraphButton.Name = "AddGraphButton";
+            this.AddGraphButton.Size = new System.Drawing.Size(151, 58);
+            this.AddGraphButton.TabIndex = 2;
+            this.AddGraphButton.Text = "Ajouter au\r\nGraphique";
+            this.AddGraphButton.Click += new System.EventHandler(this.AddGraphButton_Click);
             // 
             // xtraTabControl1
             // 
@@ -134,8 +140,8 @@
             // acquisitionTab
             // 
             this.acquisitionTab.Controls.Add(this.gridControl1);
-            this.acquisitionTab.Controls.Add(this.simpleButton2);
-            this.acquisitionTab.Controls.Add(this.simpleButton1);
+            this.acquisitionTab.Controls.Add(this.AddGraphButton);
+            this.acquisitionTab.Controls.Add(this.SupprClientButton);
             this.acquisitionTab.Image = ((System.Drawing.Image)(resources.GetObject("acquisitionTab.Image")));
             this.acquisitionTab.Name = "acquisitionTab";
             this.acquisitionTab.Size = new System.Drawing.Size(1737, 662);
@@ -143,28 +149,70 @@
             // 
             // graphiqueTab
             // 
+            this.graphiqueTab.Controls.Add(this.flowLayoutPanel1);
             this.graphiqueTab.Controls.Add(this.chartControl1);
             this.graphiqueTab.Image = ((System.Drawing.Image)(resources.GetObject("graphiqueTab.Image")));
             this.graphiqueTab.Name = "graphiqueTab";
             this.graphiqueTab.Size = new System.Drawing.Size(1737, 662);
             this.graphiqueTab.Text = "Graphiques";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.SourceBox);
+            this.flowLayoutPanel1.Controls.Add(this.Offset);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 34);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Offset :";
+            // 
+            // SourceBox
+            // 
+            this.SourceBox.FormattingEnabled = true;
+            this.SourceBox.Location = new System.Drawing.Point(68, 3);
+            this.SourceBox.Name = "SourceBox";
+            this.SourceBox.Size = new System.Drawing.Size(61, 24);
+            this.SourceBox.TabIndex = 1;
+            // 
+            // Offset
+            // 
+            this.Offset.Location = new System.Drawing.Point(135, 3);
+            this.Offset.Name = "Offset";
+            this.Offset.Properties.Mask.BeepOnError = true;
+            this.Offset.Properties.Mask.EditMask = "d";
+            this.Offset.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.Offset.Size = new System.Drawing.Size(62, 22);
+            this.Offset.TabIndex = 2;
+            this.Offset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Offset_KeyPress);
+            // 
             // chartControl1
             // 
-            this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartControl1.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Right;
             this.chartControl1.Legend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             this.chartControl1.Legend.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
             this.chartControl1.Legend.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.chartControl1.Legend.UseCheckBoxes = true;
-            this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Location = new System.Drawing.Point(1, 43);
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
             sideBySideBarSeriesLabel1.Border.Color = System.Drawing.Color.Black;
             sideBySideBarSeriesLabel1.TextColor = System.Drawing.Color.Black;
             this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
             this.chartControl1.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            this.chartControl1.Size = new System.Drawing.Size(1737, 662);
+            this.chartControl1.Size = new System.Drawing.Size(1737, 619);
             this.chartControl1.TabIndex = 0;
             // 
             // xtraTabPage3
@@ -192,6 +240,9 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.acquisitionTab.ResumeLayout(false);
             this.graphiqueTab.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Offset.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.ResumeLayout(false);
@@ -203,12 +254,16 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         internal DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton SupprClientButton;
+        private DevExpress.XtraEditors.SimpleButton AddGraphButton;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage acquisitionTab;
         private DevExpress.XtraTab.XtraTabPage graphiqueTab;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraCharts.ChartControl chartControl1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox SourceBox;
+        private DevExpress.XtraEditors.TextEdit Offset;
     }
 }

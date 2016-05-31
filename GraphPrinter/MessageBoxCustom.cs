@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace GraphPrinter
 {
-    public partial class MessageBox : Form
+    public partial class MessageBoxCustom : Form
     {
-        public MessageBox()
+        public MessageBoxCustom()
         {
             InitializeComponent();
         }
 
-        static MessageBox MsgBox;
+        static MessageBoxCustom MsgBox;
         static DialogResult result = DialogResult.No;
 
         public static DialogResult Show(string Text, string Caption, string btnAnnul, string btnSuppr)
         {
-            MsgBox = new MessageBox();
+            MsgBox = new MessageBoxCustom();
             MsgBox.label1.Text = Text;
             MsgBox.simpleButton1.Text = btnAnnul;
             MsgBox.simpleButton2.Text = btnSuppr;

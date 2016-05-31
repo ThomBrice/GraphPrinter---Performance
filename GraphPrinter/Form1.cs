@@ -32,9 +32,9 @@ namespace GraphPrinter
             gridControl1.DataSource = SqlHelper.DataSetEntete.Tables["Entête"];
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void SupprClientButton_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Etes-vous sûr de vouloir supprimer DEFINITIVEMENT ?", "MSG", "Annuler!", "Oui");
+            var result = MessageBoxCustom.Show("Etes-vous sûr de vouloir supprimer DEFINITIVEMENT ?", "MSG", "Annuler!", "Oui");
             if (result == DialogResult.OK)
             {
                 int[] index = gridView1.GetSelectedRows();
@@ -46,8 +46,10 @@ namespace GraphPrinter
             }
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        private void AddGraphButton_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             int id = 0;
             foreach(int i in gridView1.GetSelectedRows())
             {
@@ -66,13 +68,30 @@ namespace GraphPrinter
                 series.ArgumentDataMember = "vitesse";
                 series.ValueScaleType = ScaleType.Numerical;
                 series.ValueDataMembers.AddRange(new string[] { "force" });
-                chartControl1.Series[id.ToString()].LegendText = dataRow["Client"].ToString();
+                chartControl1.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " "+ dataRow["ID"].ToString();
+
+                //remplissage du SourceBox pour l'offset
+                SourceBox.Items.Add(dataRow["ID"].ToString());
             }
             
             Constructor.SetLegend(chartControl1,"Vitesse m/s", "Force");
 
-            MessageBox.Show("graphiques OK!", "MSG", "ok", "ok");
+            Cursor.Current = Cursors.Default;
 
+            MessageBox.Show("Les graphiques sont chargés", "Graphiques");
+
+        }
+
+        private void Offset_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                if(SourceBox.SelectedItem != null)
+                {
+                    String ID = SourceBox.SelectedItem.ToString();
+                    chartControl1.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID],Int32.Parse(Offset.Text));
+                }
+            }
         }
     }
 }

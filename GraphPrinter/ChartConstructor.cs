@@ -32,6 +32,30 @@ namespace GraphPrinter
             return table;
         }
 
+        public DataTable Offset(DataTable dataTable, int offset)
+        {
+            // Create an empty table.
+            DataTable table = new DataTable("Table1");
+
+            // Add two columns to the table.
+            table.Columns.Add("vitesse", typeof(float));
+            table.Columns.Add("force", typeof(float));
+
+            // Add data rows to the table.
+            DataRow row = null;
+
+            foreach (DataRow data in dataTable.Rows)
+            {
+                row = table.NewRow();
+                var i = float.Parse(data["vitesse"].ToString());
+                row["vitesse"] = data["vitesse"];
+                row["force"] = offset + float.Parse(data["force"].ToString());
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+
         public void SetLegend(ChartControl chartControl1,String Xlabel, String Ylabel)
         {
             Legend legend = chartControl1.Legend;
