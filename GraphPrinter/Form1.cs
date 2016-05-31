@@ -58,23 +58,36 @@ namespace GraphPrinter
                 SqlHelper.UpdateDataSetDonnee(id);
 
                 DataTable data = SqlHelper.DataSetDonnee.Tables[id.ToString()];
-                // create serie
-                Series series = new Series(id.ToString(), ViewType.ScatterLine);
-                chartControl1.Series.Add(series);
-                // datatable
-                series.DataSource = Constructor.ForceVitesse(data);
+                // create series
+                Series serie1 = new Series(id.ToString(), ViewType.ScatterLine);
+                Series serie2 = new Series(id.ToString(), ViewType.ScatterLine);
+                forceVitesseChart.Series.Add(serie1);
+                forceVitesseMChart.Series.Add(serie2);
+
+                // datatables
+                serie1.DataSource = Constructor.ForceVitesse(data);
+                serie2.DataSource = Constructor.ForceVitesseMiroir(data);
                 // specify data members to bind series
-                series.ArgumentScaleType = ScaleType.Numerical;
-                series.ArgumentDataMember = "vitesse";
-                series.ValueScaleType = ScaleType.Numerical;
-                series.ValueDataMembers.AddRange(new string[] { "force" });
-                chartControl1.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " "+ dataRow["ID"].ToString();
+                serie1.ArgumentScaleType = ScaleType.Numerical;
+                serie1.ArgumentDataMember = "vitesse";
+                serie1.ValueScaleType = ScaleType.Numerical;
+                serie1.ValueDataMembers.AddRange(new string[] { "force" });
+                forceVitesseChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " "+ id;
+
+                // Remplissage du graphique force(Vitesse) Miroir
+                
+                serie2.ArgumentScaleType = ScaleType.Numerical;
+                serie2.ArgumentDataMember = "vitesse";
+                serie2.ValueScaleType = ScaleType.Numerical;
+                serie2.ValueDataMembers.AddRange(new string[] { "force" });
+                forceVitesseMChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " " + id;
 
                 //remplissage du SourceBox pour l'offset
                 SourceBox.Items.Add(dataRow["ID"].ToString());
             }
             
-            Constructor.SetLegend(chartControl1,"Vitesse m/s", "Force");
+            Constructor.SetLegend(forceVitesseChart,"Vitesse m/s", "Force");
+            Constructor.SetLegend(forceVitesseMChart, "|Vitesse| m/s", "Force");
 
             Cursor.Current = Cursors.Default;
 
@@ -82,16 +95,32 @@ namespace GraphPrinter
 
         }
 
+        /// <summary>
+        /// Ajoute un Offset aux courbes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Offset_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             if (e.KeyChar == (char)13)
             {
                 if(SourceBox.SelectedItem != null)
                 {
                     String ID = SourceBox.SelectedItem.ToString();
-                    chartControl1.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID],Int32.Parse(Offset.Text));
+                    forceVitesseChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID],Int32.Parse(Offset.Text),"normal");
+                    forceVitesseMChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID], Int32.Parse(Offset.Text),"miroir");
                 }
             }
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            forceVitesseChart.Series.Clear();
+            forceVitesseMChart.Series.Clear();
+            Cursor.Current = Cursors.Default;
         }
     }
 }

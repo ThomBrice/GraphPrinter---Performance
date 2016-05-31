@@ -8,6 +8,11 @@ namespace GraphPrinter
 {
     class ChartConstructor
     {
+        /// <summary>
+        /// creer les graphiques Froce/Vitesse
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
         public DataTable ForceVitesse(DataTable dataTable)
         {
             // Create an empty table.
@@ -32,7 +37,12 @@ namespace GraphPrinter
             return table;
         }
 
-        public DataTable Offset(DataTable dataTable, int offset)
+        /// <summary>
+        /// creer les graphiques Froce/Vitesse(Miroir)
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
+        public DataTable ForceVitesseMiroir(DataTable dataTable)
         {
             // Create an empty table.
             DataTable table = new DataTable("Table1");
@@ -48,14 +58,65 @@ namespace GraphPrinter
             {
                 row = table.NewRow();
                 var i = float.Parse(data["vitesse"].ToString());
-                row["vitesse"] = data["vitesse"];
-                row["force"] = offset + float.Parse(data["force"].ToString());
+                row["vitesse"] = Math.Abs(float.Parse(data["vitesse"].ToString()));
+                row["force"] = data["force"];
                 table.Rows.Add(row);
             }
 
             return table;
         }
 
+        /// <summary>
+        /// ajoute une valeur d'offset à l'ordonnée
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public DataTable Offset(DataTable dataTable, int offset, string type)
+        {
+            // Create an empty table.
+            DataTable table = new DataTable("Table1");
+
+            // Add two columns to the table.
+            table.Columns.Add("vitesse", typeof(float));
+            table.Columns.Add("force", typeof(float));
+
+            // Add data rows to the table.
+            DataRow row = null;
+
+            switch (type)
+            {
+                case "normal":
+                    foreach (DataRow data in dataTable.Rows)
+                    {
+                        row = table.NewRow();
+                        var i = float.Parse(data["vitesse"].ToString());
+                        row["vitesse"] = data["vitesse"];
+                        row["force"] = offset + float.Parse(data["force"].ToString());
+                        table.Rows.Add(row);
+                    }
+                break;
+                case "miroir":
+                    foreach (DataRow data in dataTable.Rows)
+                    {
+                        row = table.NewRow();
+                        var i = float.Parse(data["vitesse"].ToString());
+                        row["vitesse"] = Math.Abs(float.Parse(data["vitesse"].ToString()));
+                        row["force"] = offset + float.Parse(data["force"].ToString());
+                        table.Rows.Add(row);
+                    }
+                    break;
+
+            }
+            return table;
+        }
+
+        /// <summary>
+        /// paramétre la légende des graphiques
+        /// </summary>
+        /// <param name="chartControl1"></param>
+        /// <param name="Xlabel"></param>
+        /// <param name="Ylabel"></param>
         public void SetLegend(ChartControl chartControl1,String Xlabel, String Ylabel)
         {
             Legend legend = chartControl1.Legend;
