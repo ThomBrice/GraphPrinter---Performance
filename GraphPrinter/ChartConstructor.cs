@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using DevExpress.XtraCharts;
-using DevExpress.XtraEditors;
 using System.Drawing;
 
 namespace GraphPrinter
@@ -57,8 +56,30 @@ namespace GraphPrinter
             foreach (DataRow data in dataTable.Rows)
             {
                 row = table.NewRow();
-                var i = float.Parse(data["vitesse"].ToString());
                 row["vitesse"] = Math.Abs(float.Parse(data["vitesse"].ToString()));
+                row["force"] = data["force"];
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+
+        public DataTable ForcePosition(DataTable dataTable)
+        {
+            // Create an empty table.
+            DataTable table = new DataTable("Table1");
+
+            // Add two columns to the table.
+            table.Columns.Add("position", typeof(float));
+            table.Columns.Add("force", typeof(float));
+
+            // Add data rows to the table.
+            DataRow row = null;
+
+            foreach (DataRow data in dataTable.Rows)
+            {
+                row = table.NewRow();
+                row["position"] = data["position"];
                 row["force"] = data["force"];
                 table.Rows.Add(row);
             }
@@ -76,37 +97,46 @@ namespace GraphPrinter
         {
             // Create an empty table.
             DataTable table = new DataTable("Table1");
-
-            // Add two columns to the table.
-            table.Columns.Add("vitesse", typeof(float));
-            table.Columns.Add("force", typeof(float));
-
             // Add data rows to the table.
             DataRow row = null;
-
             switch (type)
             {
                 case "normal":
+                    // Add two columns to the table.
+                    table.Columns.Add("vitesse", typeof(float));
+                    table.Columns.Add("force", typeof(float));
                     foreach (DataRow data in dataTable.Rows)
                     {
                         row = table.NewRow();
-                        var i = float.Parse(data["vitesse"].ToString());
                         row["vitesse"] = data["vitesse"];
                         row["force"] = offset + float.Parse(data["force"].ToString());
                         table.Rows.Add(row);
                     }
-                break;
+                    break;
                 case "miroir":
+                    // Add two columns to the table.
+                    table.Columns.Add("vitesse", typeof(float));
+                    table.Columns.Add("force", typeof(float));
                     foreach (DataRow data in dataTable.Rows)
                     {
                         row = table.NewRow();
-                        var i = float.Parse(data["vitesse"].ToString());
                         row["vitesse"] = Math.Abs(float.Parse(data["vitesse"].ToString()));
                         row["force"] = offset + float.Parse(data["force"].ToString());
                         table.Rows.Add(row);
                     }
                     break;
-
+                case "patate":
+                    // Add two columns to the table.
+                    table.Columns.Add("position", typeof(float));
+                    table.Columns.Add("force", typeof(float));
+                    foreach (DataRow data in dataTable.Rows)
+                    {
+                        row = table.NewRow();
+                        row["position"] = data["position"];
+                        row["force"] = offset + float.Parse(data["force"].ToString());
+                        table.Rows.Add(row);
+                    }
+                    break;
             }
             return table;
         }
@@ -125,7 +155,7 @@ namespace GraphPrinter
             legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
 
             // Define its margins and alignment relative to the diagram
-            legend.Margins.All = 8;
+            legend.Margins.All = 0;
             legend.AlignmentHorizontal = LegendAlignmentHorizontal.LeftOutside;
             legend.AlignmentVertical = LegendAlignmentVertical.Top;
 
@@ -141,21 +171,21 @@ namespace GraphPrinter
             legend.Padding.All = 4;
 
             // Define the limits for the legend to occupy the chart's space
-            legend.BackColor = Color.Beige;
+            legend.BackColor = Color.White;
             legend.FillStyle.FillMode = FillMode.Gradient;
-            ((RectangleGradientFillOptions)legend.FillStyle.Options).Color2 = Color.Bisque;
+            ((RectangleGradientFillOptions)legend.FillStyle.Options).Color2 = Color.White;
 
             legend.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            legend.Border.Color = Color.DarkBlue;
-            legend.Border.Thickness = 2;
+            legend.Border.Color = Color.Black;
+            legend.Border.Thickness = 1;
 
             legend.Shadow.Visible = true;
             legend.Shadow.Color = Color.LightGray;
-            legend.Shadow.Size = 2;
+            legend.Shadow.Size = 1;
 
             // Customise the legend text properties
-            legend.Font = new Font("Arial", 10, FontStyle.Bold);
-            legend.TextColor = Color.DarkBlue;
+            legend.Font = new Font("Arial", 10, FontStyle.Regular);
+            legend.TextColor = Color.Black;
 
             XYDiagram XYDiagram = chartControl1.Diagram as XYDiagram;
             XYDiagram.AxisX.Title.Text = Xlabel;
@@ -163,6 +193,50 @@ namespace GraphPrinter
 
             XYDiagram.AxisY.Title.Text = Ylabel;
             XYDiagram.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+
+            //setup gridlines
+            XYDiagram.AxisY.GridLines.Visible = true;
+            XYDiagram.AxisX.GridLines.Visible = true;
+            XYDiagram.AxisX.GridLines.MinorVisible = false;
+            XYDiagram.AxisY.GridLines.MinorVisible = false;
+
+            //setup zoom
+            XYDiagram.EnableAxisXZooming = true;
+            XYDiagram.EnableAxisYZooming = true;
+            XYDiagram.ZoomingOptions.UseMouseWheel = true;
+
+            //setup scroll
+            XYDiagram.EnableAxisXScrolling = true;
+            XYDiagram.EnableAxisYScrolling = true;
+            XYDiagram.ScrollingOptions.UseMouse = true;
+        }
+
+        /// <summary>
+        /// Setup pour afficher le grille à petits carreaux
+        /// </summary>
+        /// <param name="chartControl1"></param>
+        public void SetGridComplete(ChartControl chartControl1)
+        {
+            XYDiagram XYDiagram = chartControl1.Diagram as XYDiagram;
+            //setup gridlines
+            XYDiagram.AxisY.GridLines.Visible = true;
+            XYDiagram.AxisX.GridLines.Visible = true;
+            XYDiagram.AxisX.GridLines.MinorVisible = true;
+            XYDiagram.AxisY.GridLines.MinorVisible = true;
+        }
+
+        /// <summary>
+        /// setup pour afficher la grille la moins précise
+        /// </summary>
+        /// <param name="chartControl1"></param>
+        public void SetBigGrid(ChartControl chartControl1)
+        {
+            XYDiagram XYDiagram = chartControl1.Diagram as XYDiagram;
+            //setup gridlines
+            XYDiagram.AxisY.GridLines.Visible = true;
+            XYDiagram.AxisX.GridLines.Visible = true;
+            XYDiagram.AxisX.GridLines.MinorVisible = false;
+            XYDiagram.AxisY.GridLines.MinorVisible = false;
         }
     }
 }
