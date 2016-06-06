@@ -152,7 +152,7 @@ namespace GraphPrinter
             Legend legend = chartControl1.Legend;
 
             // Display the chart control's legend
-            legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            legend.Visible = true;
 
             // Define its margins and alignment relative to the diagram
             legend.Margins.All = 0;
@@ -189,10 +189,10 @@ namespace GraphPrinter
 
             XYDiagram XYDiagram = chartControl1.Diagram as XYDiagram;
             XYDiagram.AxisX.Title.Text = Xlabel;
-            XYDiagram.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            XYDiagram.AxisX.Title.Visible = true;
 
             XYDiagram.AxisY.Title.Text = Ylabel;
-            XYDiagram.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            XYDiagram.AxisY.Title.Visible = true;
 
             //setup gridlines
             XYDiagram.AxisY.GridLines.Visible = true;
@@ -209,6 +209,7 @@ namespace GraphPrinter
             XYDiagram.EnableAxisXScrolling = true;
             XYDiagram.EnableAxisYScrolling = true;
             XYDiagram.ScrollingOptions.UseMouse = true;
+
         }
 
         /// <summary>

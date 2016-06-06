@@ -1,6 +1,6 @@
 ﻿namespace GraphPrinter
 {
-    partial class Form1
+    partial class PagePrincipale
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DevExpress.XtraCharts.ScatterLineSeriesView scatterLineSeriesView1 = new DevExpress.XtraCharts.ScatterLineSeriesView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagePrincipale));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.graphiqueTab = new DevExpress.XtraTab.XtraTabPage();
             this.ExportButton = new DevExpress.XtraEditors.SimpleButton();
@@ -49,7 +49,6 @@
             this.SourceBox = new System.Windows.Forms.ComboBox();
             this.Offset = new DevExpress.XtraEditors.TextEdit();
             this.acquisitionTab = new DevExpress.XtraTab.XtraTabPage();
-            this.ResetButton = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.AddGraphButton = new DevExpress.XtraEditors.SimpleButton();
@@ -64,7 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.forceVitesseMChart)).BeginInit();
             this.ForcePositionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.forcePositionChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(scatterLineSeriesView1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Offset.Properties)).BeginInit();
             this.acquisitionTab.SuspendLayout();
@@ -80,8 +78,6 @@
             // 
             // graphiqueTab
             // 
-            this.graphiqueTab.Appearance.PageClient.BackColor = System.Drawing.Color.Black;
-            this.graphiqueTab.Appearance.PageClient.Options.UseBackColor = true;
             this.graphiqueTab.Controls.Add(this.ExportButton);
             this.graphiqueTab.Controls.Add(this.CompleteGridButton);
             this.graphiqueTab.Controls.Add(this.BigGridButton);
@@ -95,8 +91,6 @@
             // 
             // ExportButton
             // 
-            this.ExportButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.ExportButton.Appearance.Options.UseBackColor = true;
             this.ExportButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.ExportButton.Image = ((System.Drawing.Image)(resources.GetObject("ExportButton.Image")));
             this.ExportButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
@@ -108,8 +102,6 @@
             // 
             // CompleteGridButton
             // 
-            this.CompleteGridButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.CompleteGridButton.Appearance.Options.UseBackColor = true;
             this.CompleteGridButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.CompleteGridButton.Image = ((System.Drawing.Image)(resources.GetObject("CompleteGridButton.Image")));
             this.CompleteGridButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
@@ -121,8 +113,6 @@
             // 
             // BigGridButton
             // 
-            this.BigGridButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.BigGridButton.Appearance.Options.UseBackColor = true;
             this.BigGridButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.BigGridButton.Image = ((System.Drawing.Image)(resources.GetObject("BigGridButton.Image")));
             this.BigGridButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
@@ -134,8 +124,6 @@
             // 
             // ClearGraphButton
             // 
-            this.ClearGraphButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.ClearGraphButton.Appearance.Options.UseBackColor = true;
             this.ClearGraphButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.ClearGraphButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearGraphButton.Image")));
             this.ClearGraphButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
@@ -151,13 +139,9 @@
             this.xtraTabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xtraTabControl2.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.xtraTabControl2.Appearance.Options.UseBackColor = true;
             this.xtraTabControl2.CustomHeaderButtons.AddRange(new DevExpress.XtraTab.Buttons.CustomHeaderButton[] {
             new DevExpress.XtraTab.Buttons.CustomHeaderButton()});
-            this.xtraTabControl2.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right;
             this.xtraTabControl2.Location = new System.Drawing.Point(0, 43);
-            this.xtraTabControl2.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControl2.Name = "xtraTabControl2";
             this.xtraTabControl2.SelectedTabPage = this.NormalTab;
             this.xtraTabControl2.Size = new System.Drawing.Size(1738, 620);
@@ -172,7 +156,7 @@
             this.NormalTab.Controls.Add(this.forceVitesseChart);
             this.NormalTab.Image = ((System.Drawing.Image)(resources.GetObject("NormalTab.Image")));
             this.NormalTab.Name = "NormalTab";
-            this.NormalTab.Size = new System.Drawing.Size(1691, 614);
+            this.NormalTab.Size = new System.Drawing.Size(1732, 573);
             this.NormalTab.Text = "Force(Vitesse)";
             // 
             // forceVitesseChart
@@ -182,7 +166,7 @@
             this.forceVitesseChart.Location = new System.Drawing.Point(0, 0);
             this.forceVitesseChart.Name = "forceVitesseChart";
             this.forceVitesseChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.forceVitesseChart.Size = new System.Drawing.Size(1691, 614);
+            this.forceVitesseChart.Size = new System.Drawing.Size(1732, 573);
             this.forceVitesseChart.TabIndex = 0;
             // 
             // MiroirTab
@@ -190,7 +174,7 @@
             this.MiroirTab.Controls.Add(this.forceVitesseMChart);
             this.MiroirTab.Image = ((System.Drawing.Image)(resources.GetObject("MiroirTab.Image")));
             this.MiroirTab.Name = "MiroirTab";
-            this.MiroirTab.Size = new System.Drawing.Size(1691, 614);
+            this.MiroirTab.Size = new System.Drawing.Size(1732, 573);
             this.MiroirTab.Text = "Force(Vitesse) Miroir";
             // 
             // forceVitesseMChart
@@ -200,7 +184,7 @@
             this.forceVitesseMChart.Location = new System.Drawing.Point(0, 0);
             this.forceVitesseMChart.Name = "forceVitesseMChart";
             this.forceVitesseMChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.forceVitesseMChart.Size = new System.Drawing.Size(1691, 614);
+            this.forceVitesseMChart.Size = new System.Drawing.Size(1732, 573);
             this.forceVitesseMChart.TabIndex = 0;
             // 
             // ForcePositionTab
@@ -208,7 +192,7 @@
             this.ForcePositionTab.Controls.Add(this.forcePositionChart);
             this.ForcePositionTab.Image = ((System.Drawing.Image)(resources.GetObject("ForcePositionTab.Image")));
             this.ForcePositionTab.Name = "ForcePositionTab";
-            this.ForcePositionTab.Size = new System.Drawing.Size(1691, 614);
+            this.ForcePositionTab.Size = new System.Drawing.Size(1732, 573);
             this.ForcePositionTab.Text = "Force(Position)";
             // 
             // forcePositionChart
@@ -218,7 +202,7 @@
             this.forcePositionChart.Location = new System.Drawing.Point(0, 0);
             this.forcePositionChart.Name = "forcePositionChart";
             this.forcePositionChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.forcePositionChart.Size = new System.Drawing.Size(1691, 614);
+            this.forcePositionChart.Size = new System.Drawing.Size(1732, 573);
             this.forcePositionChart.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -262,9 +246,6 @@
             // 
             // acquisitionTab
             // 
-            this.acquisitionTab.Appearance.PageClient.BackColor = System.Drawing.Color.Black;
-            this.acquisitionTab.Appearance.PageClient.Options.UseBackColor = true;
-            this.acquisitionTab.Controls.Add(this.ResetButton);
             this.acquisitionTab.Controls.Add(this.gridControl1);
             this.acquisitionTab.Controls.Add(this.AddGraphButton);
             this.acquisitionTab.Controls.Add(this.SupprClientButton);
@@ -273,50 +254,37 @@
             this.acquisitionTab.Size = new System.Drawing.Size(1736, 658);
             this.acquisitionTab.Text = "Acquisitions";
             // 
-            // ResetButton
-            // 
-            this.ResetButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.ResetButton.Appearance.Options.UseBackColor = true;
-            this.ResetButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.ResetButton.Image = ((System.Drawing.Image)(resources.GetObject("ResetButton.Image")));
-            this.ResetButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ResetButton.Location = new System.Drawing.Point(306, 9);
-            this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(40, 40);
-            this.ResetButton.TabIndex = 4;
-            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
-            // 
             // gridControl1
             // 
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl1.Location = new System.Drawing.Point(0, 54);
+            this.gridControl1.Location = new System.Drawing.Point(0, 63);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1736, 604);
-            this.gridControl1.TabIndex = 3;
+            this.gridControl1.Size = new System.Drawing.Size(1742, 527);
+            this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
+            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsEditForm.ActionOnModifiedRowChange = DevExpress.XtraGrid.Views.Grid.EditFormModifiedAction.Cancel;
+            this.gridView1.OptionsDetail.EnableMasterViewMode = false;
+            this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
-            this.gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             // 
             // AddGraphButton
             // 
-            this.AddGraphButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.AddGraphButton.Appearance.Options.UseBackColor = true;
             this.AddGraphButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.AddGraphButton.Image = ((System.Drawing.Image)(resources.GetObject("AddGraphButton.Image")));
             this.AddGraphButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
@@ -329,26 +297,24 @@
             // 
             // SupprClientButton
             // 
-            this.SupprClientButton.Appearance.BackColor = System.Drawing.Color.White;
-            this.SupprClientButton.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.SupprClientButton.Appearance.Options.UseBackColor = true;
-            this.SupprClientButton.Appearance.Options.UseForeColor = true;
             this.SupprClientButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.SupprClientButton.Image = ((System.Drawing.Image)(resources.GetObject("SupprClientButton.Image")));
             this.SupprClientButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.SupprClientButton.Location = new System.Drawing.Point(0, -1);
+            this.SupprClientButton.Location = new System.Drawing.Point(0, 0);
             this.SupprClientButton.Name = "SupprClientButton";
-            this.SupprClientButton.Size = new System.Drawing.Size(119, 59);
+            this.SupprClientButton.Size = new System.Drawing.Size(119, 58);
             this.SupprClientButton.TabIndex = 1;
             this.SupprClientButton.Text = " Supprimer\r\nAcquisition";
             this.SupprClientButton.Click += new System.EventHandler(this.SupprClientButton_Click);
             // 
             // xtraTabControl1
             // 
-            this.xtraTabControl1.Appearance.BackColor = System.Drawing.Color.White;
-            this.xtraTabControl1.Appearance.Options.UseBackColor = true;
+            serializableAppearanceObject1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            serializableAppearanceObject1.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject1.Image")));
+            serializableAppearanceObject1.Options.UseBackColor = true;
+            serializableAppearanceObject1.Options.UseImage = true;
             this.xtraTabControl1.CustomHeaderButtons.AddRange(new DevExpress.XtraTab.Buttons.CustomHeaderButton[] {
-            new DevExpress.XtraTab.Buttons.CustomHeaderButton()});
+            new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, serializableAppearanceObject1, "", null, null, true)});
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left;
             this.xtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Vertical;
@@ -384,7 +350,6 @@
             this.MiroirTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.forceVitesseMChart)).EndInit();
             this.ForcePositionTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(scatterLineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forcePositionChart)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
@@ -410,6 +375,8 @@
         private System.Windows.Forms.ComboBox SourceBox;
         private DevExpress.XtraEditors.TextEdit Offset;
         private DevExpress.XtraTab.XtraTabPage acquisitionTab;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        internal DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton AddGraphButton;
         private DevExpress.XtraEditors.SimpleButton SupprClientButton;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
@@ -420,8 +387,5 @@
         private DevExpress.XtraEditors.SimpleButton CompleteGridButton;
         private DevExpress.XtraEditors.SimpleButton BigGridButton;
         private DevExpress.XtraEditors.SimpleButton ExportButton;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        internal DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton ResetButton;
     }
 }

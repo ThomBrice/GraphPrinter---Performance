@@ -12,14 +12,14 @@ using System.IO;
 
 namespace GraphPrinter
 {
-    public partial class Form1 : XtraForm
+    public partial class PagePrincipale : XtraForm
     {
         #region variables
         SqlHelper SqlHelper = new SqlHelper();
         ChartConstructor Constructor = new ChartConstructor();
         #endregion
 
-        public Form1()
+        public PagePrincipale()
         {
             InitializeComponent();
             acquisitionTab.Show();
@@ -29,7 +29,6 @@ namespace GraphPrinter
         private void Form1_Load(object sender, EventArgs e)
         {
             // remplissage du DataSet
-            SqlHelper.DataSetEntete.Clear();
             SqlHelper.UpdateDataSetEntete();
 
             // remplissage du gridControl
@@ -52,12 +51,8 @@ namespace GraphPrinter
 
         private void AddGraphButton_Click(object sender, EventArgs e)
         {
-            if (gridView1.SelectedRowsCount == 0)
-            {
-                return;
-            }
-            ClearGraphButton_Click(sender, e);
             Cursor.Current = Cursors.WaitCursor;
+
             int id = 0;
             foreach(int i in gridView1.GetSelectedRows())
             {
@@ -102,11 +97,6 @@ namespace GraphPrinter
 
                 //remplissage du SourceBox pour l'offset
                 SourceBox.Items.Add(dataRow["ID"].ToString());
-
-                // définition de l'épaisseur du trait
-                ((ScatterLineSeriesView)serie1.View).LineStyle.Thickness = 1;
-                ((ScatterLineSeriesView)serie2.View).LineStyle.Thickness = 1;
-                ((ScatterLineSeriesView)serie3.View).LineStyle.Thickness = 1;
             }
             
             Constructor.SetLegend(forceVitesseChart,"Vitesse (m/s)", "Force (N)");
@@ -207,9 +197,5 @@ namespace GraphPrinter
             Cursor.Current = Cursors.Default;
         }
 
-        private void ResetButton_Click(object sender, EventArgs e)
-        {
-            Form1_Load(sender, e);
-        }
     }
 }
