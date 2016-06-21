@@ -30,9 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DevExpress.XtraCharts.ScatterLineSeriesView scatterLineSeriesView1 = new DevExpress.XtraCharts.ScatterLineSeriesView();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.graphiqueTab = new DevExpress.XtraTab.XtraTabPage();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textNbrPoints = new DevExpress.XtraEditors.TextEdit();
             this.ExportButton = new DevExpress.XtraEditors.SimpleButton();
             this.CompleteGridButton = new DevExpress.XtraEditors.SimpleButton();
             this.BigGridButton = new DevExpress.XtraEditors.SimpleButton();
@@ -56,6 +58,8 @@
             this.SupprClientButton = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.graphiqueTab.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textNbrPoints.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).BeginInit();
             this.xtraTabControl2.SuspendLayout();
             this.NormalTab.SuspendLayout();
@@ -64,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.forceVitesseMChart)).BeginInit();
             this.ForcePositionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.forcePositionChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(scatterLineSeriesView1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Offset.Properties)).BeginInit();
             this.acquisitionTab.SuspendLayout();
@@ -82,6 +85,7 @@
             // 
             this.graphiqueTab.Appearance.PageClient.BackColor = System.Drawing.Color.Black;
             this.graphiqueTab.Appearance.PageClient.Options.UseBackColor = true;
+            this.graphiqueTab.Controls.Add(this.flowLayoutPanel2);
             this.graphiqueTab.Controls.Add(this.ExportButton);
             this.graphiqueTab.Controls.Add(this.CompleteGridButton);
             this.graphiqueTab.Controls.Add(this.BigGridButton);
@@ -92,6 +96,37 @@
             this.graphiqueTab.Name = "graphiqueTab";
             this.graphiqueTab.Size = new System.Drawing.Size(1736, 658);
             this.graphiqueTab.Text = "Graphiques";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label2);
+            this.flowLayoutPanel2.Controls.Add(this.textNbrPoints);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(627, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(179, 34);
+            this.flowLayoutPanel2.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Moyennage :";
+            // 
+            // textNbrPoints
+            // 
+            this.textNbrPoints.EditValue = "1";
+            this.textNbrPoints.Location = new System.Drawing.Point(106, 3);
+            this.textNbrPoints.Name = "textNbrPoints";
+            this.textNbrPoints.Properties.Mask.BeepOnError = true;
+            this.textNbrPoints.Properties.Mask.EditMask = "00";
+            this.textNbrPoints.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.textNbrPoints.Size = new System.Drawing.Size(60, 22);
+            this.textNbrPoints.TabIndex = 8;
+            this.textNbrPoints.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNbrPoints_KeyPress);
             // 
             // ExportButton
             // 
@@ -312,6 +347,7 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
             this.gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsView.HeaderFilterButtonShowMode = DevExpress.XtraEditors.Controls.FilterButtonShowMode.SmartTag;
             // 
             // AddGraphButton
             // 
@@ -377,6 +413,9 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.graphiqueTab.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textNbrPoints.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).EndInit();
             this.xtraTabControl2.ResumeLayout(false);
             this.NormalTab.ResumeLayout(false);
@@ -384,7 +423,6 @@
             this.MiroirTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.forceVitesseMChart)).EndInit();
             this.ForcePositionTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(scatterLineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forcePositionChart)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
@@ -423,5 +461,8 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         internal DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton ResetButton;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.TextEdit textNbrPoints;
     }
 }

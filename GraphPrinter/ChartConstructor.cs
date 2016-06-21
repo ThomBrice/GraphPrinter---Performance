@@ -2,13 +2,14 @@
 using System.Data;
 using DevExpress.XtraCharts;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace GraphPrinter
 {
     class ChartConstructor
     {
         /// <summary>
-        /// creer les graphiques Froce/Vitesse
+        /// creer les graphiques Force/Vitesse
         /// </summary>
         /// <param name="dataTable"></param>
         /// <returns></returns>
@@ -82,6 +83,30 @@ namespace GraphPrinter
                 row["position"] = data["position"];
                 row["force"] = data["force"];
                 table.Rows.Add(row);
+            }
+
+            return table;
+        }
+
+        public DataTable TimeVitesse(DataTable dataTable)
+        {
+            // Create an empty table.
+            DataTable table = new DataTable("Table1");
+
+            // Add two columns to the table.
+            table.Columns.Add("vitesse", typeof(float));
+            table.Columns.Add("time", typeof(double));
+
+            // Add data rows to the table.
+            DataRow row = null;
+
+            foreach (DataRow data in dataTable.Rows)
+            {
+                    row = table.NewRow();
+                    row["vitesse"] = data["vitesse"];
+                    row["time"] = data["time"];
+                    table.Rows.Add(row);
+                
             }
 
             return table;
@@ -238,6 +263,38 @@ namespace GraphPrinter
             XYDiagram.AxisX.GridLines.Visible = true;
             XYDiagram.AxisX.GridLines.MinorVisible = false;
             XYDiagram.AxisY.GridLines.MinorVisible = false;
+        }
+
+        public DataTable Moyennage(DataTable dataTable, int nbrPoints)
+        {
+            int size = dataTable.Rows.Count;
+            int i = 0;
+            float vitesse = 0;
+            float force = 0; 
+            float position = 0;
+            while(i != size-nbrPoints-1)
+            {
+                vitesse = 0;
+                force = 0;
+                position = 0;
+
+                for(int u = 0; u<nbrPoints; u++)
+                {
+                    vitesse += float.Parse(dataTable.Rows[i + u]["vitesse"].ToString());
+                    force += float.Parse(dataTable.Rows[i + u]["force"].ToString());
+                    position += float.Parse(dataTable.Rows[i + u]["position"].ToString());
+                }
+                dataTable.Rows[i]["vitesse"] = vitesse / nbrPoints;
+                dataTable.Rows[i]["force"] = force / nbrPoints;
+                dataTable.Rows[i]["position"] = position / nbrPoints;
+                
+                i++;
+            }
+            for (int u = 1; u < nbrPoints; u++)
+            {
+                dataTable.Rows.RemoveAt(size - u);
+            }
+            return dataTable;
         }
     }
 }

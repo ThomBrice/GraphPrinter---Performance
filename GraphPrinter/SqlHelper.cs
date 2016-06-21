@@ -101,7 +101,19 @@ namespace GraphPrinter
                 SqlDataAdapter adapteur = new SqlDataAdapter(cmd);
                 adapteur.Fill(DataSetDonnee, id.ToString());
                 this.CloseConnexion(connexionBanc);
+                Boolean start = false;
+                while (start == false)
+                {
+                    float data = new float();
+                    data = float.Parse(DataSetDonnee.Tables[id.ToString()].Rows[0]["vitesse"].ToString());
+                    if (data < -25 || data>25)
+                    {
+                        start = true;
+                    }
+                    DataSetDonnee.Tables[id.ToString()].Rows.RemoveAt(0);
+                }
             }
         }
+
     }
 }

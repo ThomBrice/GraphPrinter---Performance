@@ -59,13 +59,13 @@ namespace GraphPrinter
             ClearGraphButton_Click(sender, e);
             Cursor.Current = Cursors.WaitCursor;
             int id = 0;
-            foreach(int i in gridView1.GetSelectedRows())
+            foreach (int i in gridView1.GetSelectedRows())
             {
                 DataRow dataRow = SqlHelper.DataSetEntete.Tables["Entête"].Rows[i];
                 id = Int32.Parse(dataRow["ID"].ToString());
                 SqlHelper.UpdateDataSetDonnee(id);
 
-                DataTable data = SqlHelper.DataSetDonnee.Tables[id.ToString()];
+                DataTable data = Constructor.Moyennage(SqlHelper.DataSetDonnee.Tables[id.ToString()],int.Parse(textNbrPoints.Text));
                 // create series
                 Series serie1 = new Series(id.ToString(), ViewType.ScatterLine);
                 Series serie2 = new Series(id.ToString(), ViewType.ScatterLine);
@@ -84,7 +84,7 @@ namespace GraphPrinter
                 serie1.ArgumentDataMember = "vitesse";
                 serie1.ValueScaleType = ScaleType.Numerical;
                 serie1.ValueDataMembers.AddRange(new string[] { "force" });
-                forceVitesseChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " "+ id;
+                forceVitesseChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " " + id;
 
                 // Remplissage du graphique force(Vitesse) Miroir
                 serie2.ArgumentScaleType = ScaleType.Numerical;
@@ -108,15 +108,13 @@ namespace GraphPrinter
                 ((ScatterLineSeriesView)serie2.View).LineStyle.Thickness = 1;
                 ((ScatterLineSeriesView)serie3.View).LineStyle.Thickness = 1;
             }
-            
-            Constructor.SetLegend(forceVitesseChart,"Vitesse (m/s)", "Force (N)");
+
+            Constructor.SetLegend(forceVitesseChart, "Vitesse (m/s)", "Force (N)");
             Constructor.SetLegend(forceVitesseMChart, "|Vitesse| (m/s)", "Force (N)");
             Constructor.SetLegend(forcePositionChart, "Déplacement (mm) ", "Force(N)");
 
             Cursor.Current = Cursors.Default;
-
             MessageBox.Show("Les graphiques sont chargés", "Graphiques");
-
         }
 
         /// <summary>
@@ -129,11 +127,11 @@ namespace GraphPrinter
             Cursor.Current = Cursors.WaitCursor;
             if (e.KeyChar == (char)13)
             {
-                if(SourceBox.SelectedItem != null)
+                if (SourceBox.SelectedItem != null)
                 {
                     String ID = SourceBox.SelectedItem.ToString();
-                    forceVitesseChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID],Int32.Parse(Offset.Text),"normal");
-                    forceVitesseMChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID], Int32.Parse(Offset.Text),"miroir");
+                    forceVitesseChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID], Int32.Parse(Offset.Text), "normal");
+                    forceVitesseMChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID], Int32.Parse(Offset.Text), "miroir");
                     forcePositionChart.Series[ID].DataSource = Constructor.Offset(SqlHelper.DataSetDonnee.Tables[ID], Int32.Parse(Offset.Text), "patate");
                 }
             }
@@ -152,6 +150,7 @@ namespace GraphPrinter
             forceVitesseMChart.Series.Clear();
             forcePositionChart.Series.Clear();
             SourceBox.Items.Clear();
+            SqlHelper.DataSetDonnee.Clear();
             Cursor.Current = Cursors.Default;
         }
 
@@ -172,7 +171,7 @@ namespace GraphPrinter
         private void ExportButton_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            
+
             // Obtain the current export options.
             PdfExportOptions options = new PdfExportOptions();
             // Set Print Preview options.
@@ -210,6 +209,19 @@ namespace GraphPrinter
         private void ResetButton_Click(object sender, EventArgs e)
         {
             Form1_Load(sender, e);
+        }
+
+        private void textNbrPoints_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            if (e.KeyChar == (char)13)
+            {
+                if (int.Parse(textNbrPoints.Text) > 0)
+                {
+                    AddGraphButton_Click(sender, e);
+                }
+            }
+            Cursor.Current = Cursors.Default;
         }
     }
 }

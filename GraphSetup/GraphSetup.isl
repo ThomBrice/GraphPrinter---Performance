@@ -52,13 +52,13 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject>GraphPrinter</subject>
+		<subject>GraphSetup</subject>
 		<author>##ID_STRING3##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
 		<template>Intel;1033</template>
 		<lastauthor>Administrator</lastauthor>
-		<revnumber>{34669401-65C3-4898-B021-0014D4FD5DD8}</revnumber>
+		<revnumber>{7293316D-46B5-4EAA-9D76-DFF8BC58D22E}</revnumber>
 		<lastprinted/>
 		<createdtm>06/21/1999 15:00</createdtm>
 		<lastsavedtm>07/14/2000 18:50</lastsavedtm>
@@ -339,7 +339,7 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>GraphPrinter.Sortie_principale</td><td>{7606795E-0B2C-4713-AEB8-0512E284C430}</td><td>PERF</td><td>2</td><td/><td>graphprinter.sortie_principa</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>GraphPrinter.Sortie_principale</td><td>{A64AB2E1-6EFF-4888-BA7B-D2F100CE071C}</td><td>ProgramFilesFolder</td><td>2</td><td/><td>graphprinter.sortie_principa</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -898,8 +898,8 @@
 		<row><td>CancelSetup</td><td>No</td><td>EndDialog</td><td>Return</td><td>1</td><td>0</td></row>
 		<row><td>CancelSetup</td><td>Yes</td><td>DoAction</td><td>CleanUp</td><td>ISSCRIPTRUNNING="1"</td><td>1</td></row>
 		<row><td>CancelSetup</td><td>Yes</td><td>EndDialog</td><td>Exit</td><td>1</td><td>2</td></row>
-		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed</td><td>0</td></row>
+		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>SetupType</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>ChangeFolder</td><td>SelectionBrowse</td><td>InstallChangeFolder</td><td>1</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Details</td><td>SelectionBrowse</td><td>DiskSpaceRequirements</td><td>1</td><td>1</td></row>
@@ -908,7 +908,7 @@
 		<row><td>CustomSetup</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Next</td><td>[_IsSetupTypeMin]</td><td>Custom</td><td>1</td><td>0</td></row>
 		<row><td>CustomSetupTips</td><td>OK</td><td>EndDialog</td><td>Return</td><td>1</td><td>1</td></row>
-		<row><td>CustomerInformation</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>1</td><td>1</td></row>
+		<row><td>CustomerInformation</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>CustomerInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>EndDialog</td><td>Exit</td><td>(SERIALNUMVALRETRYLIMIT) And (SERIALNUMVALRETRYLIMIT&lt;0) And (SERIALNUMVALRETURN&lt;&gt;SERIALNUMVALSUCCESSRETVAL)</td><td>2</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>(Not SERIALNUMVALRETURN) OR (SERIALNUMVALRETURN=SERIALNUMVALSUCCESSRETVAL)</td><td>3</td></row>
@@ -919,7 +919,7 @@
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>[_BrowseProperty]</td><td>DATABASEDIR</td><td>1</td><td>2</td></row>
 		<row><td>DatabaseFolder</td><td>Next</td><td>NewDialog</td><td>SetupType</td><td>1</td><td>1</td></row>
-		<row><td>DestinationFolder</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>0</td></row>
+		<row><td>DestinationFolder</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>0</td></row>
 		<row><td>DestinationFolder</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>ChangeFolder</td><td>[_BrowseProperty]</td><td>INSTALLDIR</td><td>1</td><td>2</td></row>
@@ -936,11 +936,11 @@
 		<row><td>InstallChangeFolder</td><td>Up</td><td>DirectoryListUp</td><td>0</td><td>1</td><td>0</td></row>
 		<row><td>InstallWelcome</td><td>Back</td><td>NewDialog</td><td>SplashBitmap</td><td>Display_IsBitmapDlg</td><td>0</td></row>
 		<row><td>InstallWelcome</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
-		<row><td>InstallWelcome</td><td>Next</td><td>NewDialog</td><td>DestinationFolder</td><td>1</td><td>0</td></row>
+		<row><td>InstallWelcome</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Next</td><td>NewDialog</td><td>CustomSetup</td><td>_IsMaintenance = "Change"</td><td>12</td></row>
@@ -971,7 +971,7 @@
 		<row><td>ReadmeInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>ReadmeInformation</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CustomSetup</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>DestinationFolder</td><td>NOT Installed</td><td>1</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>EndDialog</td><td>Return</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>0</td></row>
@@ -1049,7 +1049,7 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>INSTALLDIR</td><td>GraphPrinter.Sortie_principale</td></row>
-		<row><td>PERF</td><td>GraphPrinter.Sortie_principale</td></row>
+		<row><td>ProgramFilesFolder</td><td>GraphPrinter.Sortie_principale</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1138,9 +1138,9 @@
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
-		<row><td>GRAPHPRINTER</td><td>PERF</td><td>GRAPHP~1|GraphPrinter</td><td/><td>0</td><td/></row>
+		<row><td>GRAPHSETUP</td><td>PERF</td><td>GRAPHS~1|GraphSetup</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>GRAPHPRINTER</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>GRAPHSETUP</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
@@ -1157,7 +1157,6 @@
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>RecentFolder</td><td>TARGETDIR</td><td>.:Recent</td><td/><td>0</td><td/></row>
-		<row><td>SETUP2</td><td>PERF</td><td>Setup2</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
 		<row><td>StartupFolder</td><td>TARGETDIR</td><td>.:StartUp</td><td/><td>3</td><td/></row>
@@ -1170,8 +1169,8 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
+		<row><td>graphs_1_graphsetup</td><td>perf</td><td>GRAPHS~1|GraphSetup</td><td/><td>1</td><td/></row>
 		<row><td>perf</td><td>ProgramMenuFolder</td><td>Perf</td><td/><td>1</td><td/></row>
-		<row><td>setup2</td><td>perf</td><td>Setup2</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -1894,7 +1893,6 @@
 	<table name="ISAssistantTag">
 		<col key="yes" def="s72">Tag</col>
 		<col def="S255">Data</col>
-		<row><td>_Built</td><td/></row>
 	</table>
 
 	<table name="ISBillBoard">
@@ -2021,7 +2019,7 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>GraphPrinter.Sortie_principale</td><td/><td/><td>_722DFFCB_72BB_4FEF_8051_E852D4515640_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>GraphPrinter.Sortie_principale</td><td/><td/><td>_AF6DA168_DAA1_44F7_A5BC_DB7612B1B106_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2610,18 +2608,18 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Perf</td><td>0</td><td/><td>858006190</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>GraphPrinter</td><td>0</td><td/><td>857999471</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>455402575</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.Perf.com</td><td>0</td><td/><td>858006190</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>Perf</td><td>0</td><td/><td>858006190</td></row>
-		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>455380079</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Perf</td><td>0</td><td/><td>-1423694165</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-1423700277</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-1423645045</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.Perf.com</td><td>0</td><td/><td>-1423694165</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>Perf</td><td>0</td><td/><td>-1423694165</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-1423698229</td></row>
 	</table>
 
 	<table name="ISSwidtagProperty">
 		<col key="yes" def="s72">Name</col>
 		<col def="s0">Value</col>
-		<row><td>UniqueId</td><td>E2AD18C0-7A5D-493D-A73A-2D68F885EE63</td></row>
+		<row><td>UniqueId</td><td>3635344D-A993-405E-BA3F-5740128D9704</td></row>
 	</table>
 
 	<table name="ISTargetImage">
@@ -2859,9 +2857,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISCompilerOption_WarningLevel</td><td>3</td></row>
 		<row><td>ISCompilerOption_WarningsAsErrors</td><td>1</td></row>
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
-		<row><td>ISUSLock</td><td>{9410CCEC-174B-4553-A5C7-564BA175438B}</td></row>
-		<row><td>ISUSSignature</td><td>{3BEB0C92-DDEF-4010-8403-2B1BE01F80B7}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant</td></row>
+		<row><td>ISUSLock</td><td>{C816102A-5904-4805-8939-C8D5852D3E9D}</td></row>
+		<row><td>ISUSSignature</td><td>{C7879C24-97EB-4C1F-842D-A4A61E248789}</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewUpdateService</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -3173,7 +3171,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>AgreeToLicense</td><td>No</td><td/></row>
 		<row><td>ApplicationUsers</td><td>AllUsers</td><td/></row>
 		<row><td>DWUSINTERVAL</td><td>30</td><td/></row>
-		<row><td>DWUSLINK</td><td>CE0CF0C8E99B9748D9ACC0B8D9EC978F9EECA78F59BCA0CFCEDCD0DFCEEC87EFF96CA72899AC</td><td/></row>
+		<row><td>DWUSLINK</td><td>CEAC671FDE2CA08F99AC576F99CB978F79BCA08FCE7C8758CE8C57DFFE3C908FC91CB09F19AC</td><td/></row>
 		<row><td>DefaultUIFont</td><td>ExpressDefault</td><td/></row>
 		<row><td>DialogCaption</td><td>InstallShield for Windows Installer</td><td/></row>
 		<row><td>DiskPrompt</td><td>[1]</td><td/></row>
@@ -3233,8 +3231,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{093434CB-92FC-4713-9416-0D7E7274A414}</td><td/></row>
-		<row><td>ProductName</td><td>GraphPrinter</td><td/></row>
+		<row><td>ProductCode</td><td>{9B3C7A79-7F5B-44EB-AC74-D9FD006EF540}</td><td/></row>
+		<row><td>ProductName</td><td>GraphSetup</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
@@ -3250,7 +3248,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
-		<row><td>UpgradeCode</td><td>{C58D0776-97D1-4B8B-A75B-2BEC960A5EA8}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{1E022854-B352-41AC-BE2E-BB18E1F78723}</td><td/></row>
 		<row><td>_IsMaintenance</td><td>Change</td><td/></row>
 		<row><td>_IsSetupTypeMin</td><td>Typical</td><td/></row>
 	</table>
@@ -3311,8 +3309,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
 		<row><td>FileKey1</td><td>GraphPrinter.Sortie_principale</td><td/><td>perf</td><td>2</td></row>
-		<row><td>FileKey2</td><td>GraphPrinter.Sortie_principale</td><td/><td>setup2</td><td>2</td></row>
-		<row><td>_Built</td><td>GraphPrinter.Sortie_principale</td><td/><td>setup2</td><td>2</td></row>
+		<row><td>FileKey2</td><td>GraphPrinter.Sortie_principale</td><td/><td>graphs_1_graphsetup</td><td>2</td></row>
+		<row><td>_Built</td><td>GraphPrinter.Sortie_principale</td><td/><td>graphs_1_graphsetup</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -3398,8 +3396,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>_Built</td><td>setup2</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>GraphPrinter.Sortie_principale</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>GraphPrinter.Sortie_principale</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>graphs_1_graphsetup</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>GraphPrinter.Sortie_principale</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>GraphPrinter.Sortie_principale</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
