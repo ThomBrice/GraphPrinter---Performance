@@ -12,14 +12,14 @@ using System.IO;
 
 namespace GraphPrinter
 {
-    public partial class Form1 : XtraForm
+    public partial class PagePrincipale : XtraForm
     {
         #region variables
         SqlHelper SqlHelper = new SqlHelper();
         ChartConstructor Constructor = new ChartConstructor();
         #endregion
 
-        public Form1()
+        public PagePrincipale()
         {
             InitializeComponent();
             acquisitionTab.Show();
@@ -84,21 +84,21 @@ namespace GraphPrinter
                 serie1.ArgumentDataMember = "vitesse";
                 serie1.ValueScaleType = ScaleType.Numerical;
                 serie1.ValueDataMembers.AddRange(new string[] { "force" });
-                forceVitesseChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " " + id;
+                forceVitesseChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + "\n" + dataRow["Nom"].ToString();
 
                 // Remplissage du graphique force(Vitesse) Miroir
                 serie2.ArgumentScaleType = ScaleType.Numerical;
                 serie2.ArgumentDataMember = "vitesse";
                 serie2.ValueScaleType = ScaleType.Numerical;
                 serie2.ValueDataMembers.AddRange(new string[] { "force" });
-                forceVitesseMChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " " + id;
+                forceVitesseMChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + "\n" + dataRow["Nom"].ToString();
 
                 // Remplissage du graphique force(position)
                 serie3.ArgumentScaleType = ScaleType.Numerical;
                 serie3.ArgumentDataMember = "position";
                 serie3.ValueScaleType = ScaleType.Numerical;
                 serie3.ValueDataMembers.AddRange(new string[] { "force" });
-                forcePositionChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + " " + id;
+                forcePositionChart.Series[id.ToString()].LegendText = dataRow["Client"].ToString() + "\n" + dataRow["Nom"].ToString();
 
                 //remplissage du SourceBox pour l'offset
                 SourceBox.Items.Add(dataRow["ID"].ToString());
@@ -172,6 +172,11 @@ namespace GraphPrinter
         {
             Cursor.Current = Cursors.WaitCursor;
 
+            PopUpExportation pop = new PopUpExportation();
+            if (pop.ShowDialog() == DialogResult.Yes)
+            { }
+            
+
             // Obtain the current export options.
             PdfExportOptions options = new PdfExportOptions();
             // Set Print Preview options.
@@ -187,12 +192,27 @@ namespace GraphPrinter
             PrintableComponentLink link2 = new PrintableComponentLink();
             PrintableComponentLink link3 = new PrintableComponentLink();
             var composentlink = new DevExpress.XtraPrintingLinks.CompositeLink(new PrintingSystem());
-            link1.Component = forcePositionChart;
-            link2.Component = forceVitesseChart;
-            link3.Component = forceVitesseMChart;
-            composentlink.Links.Add(link1);
-            composentlink.Links.Add(link2);
-            composentlink.Links.Add(link3);
+
+            foreach (int val in pop.valeurs)
+            {
+                switch (val)
+                {
+                    case 0:
+                        link1.Component = forcePositionChart;
+                        composentlink.Links.Add(link1);
+                        break;
+
+                    case 1:
+                        link2.Component = forceVitesseChart;
+                        composentlink.Links.Add(link2);
+                        break;
+
+                    case 2:
+                        link3.Component = forceVitesseMChart;
+                        composentlink.Links.Add(link3);
+                        break;
+                }
+            }
             composentlink.Landscape = true;
 
             //page permettant de choisir l'emplacement et le nom du fichier pour l'enregistrement
@@ -204,11 +224,6 @@ namespace GraphPrinter
             }
 
             Cursor.Current = Cursors.Default;
-        }
-
-        private void ResetButton_Click(object sender, EventArgs e)
-        {
-            Form1_Load(sender, e);
         }
 
         private void textNbrPoints_KeyPress(object sender, KeyPressEventArgs e)

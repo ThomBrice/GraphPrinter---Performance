@@ -1,6 +1,6 @@
 ﻿namespace GraphPrinter
 {
-    partial class Form1
+    partial class PagePrincipale
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagePrincipale));
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.graphiqueTab = new DevExpress.XtraTab.XtraTabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -313,13 +313,14 @@
             this.ResetButton.Appearance.BackColor = System.Drawing.Color.White;
             this.ResetButton.Appearance.Options.UseBackColor = true;
             this.ResetButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.ResetButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.ResetButton.Image = ((System.Drawing.Image)(resources.GetObject("ResetButton.Image")));
-            this.ResetButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ResetButton.Location = new System.Drawing.Point(306, 9);
+            this.ResetButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.ResetButton.Location = new System.Drawing.Point(306, -1);
             this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(40, 40);
-            this.ResetButton.TabIndex = 4;
-            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            this.ResetButton.Size = new System.Drawing.Size(151, 49);
+            this.ResetButton.TabIndex = 2;
+            this.ResetButton.Text = "Actualiser\r\nles données";
             // 
             // gridControl1
             // 
@@ -358,7 +359,7 @@
             this.AddGraphButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.AddGraphButton.Location = new System.Drawing.Point(139, -1);
             this.AddGraphButton.Name = "AddGraphButton";
-            this.AddGraphButton.Size = new System.Drawing.Size(151, 58);
+            this.AddGraphButton.Size = new System.Drawing.Size(151, 49);
             this.AddGraphButton.TabIndex = 2;
             this.AddGraphButton.Text = "Ajouter au\r\nGraphique";
             this.AddGraphButton.Click += new System.EventHandler(this.AddGraphButton_Click);
@@ -374,7 +375,7 @@
             this.SupprClientButton.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.SupprClientButton.Location = new System.Drawing.Point(0, -1);
             this.SupprClientButton.Name = "SupprClientButton";
-            this.SupprClientButton.Size = new System.Drawing.Size(119, 59);
+            this.SupprClientButton.Size = new System.Drawing.Size(119, 49);
             this.SupprClientButton.TabIndex = 1;
             this.SupprClientButton.Text = " Supprimer\r\nAcquisition";
             this.SupprClientButton.Click += new System.EventHandler(this.SupprClientButton_Click);
@@ -400,14 +401,14 @@
             this.acquisitionTab,
             this.graphiqueTab});
             // 
-            // Form1
+            // PagePrincipale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1783, 664);
             this.Controls.Add(this.xtraTabControl1);
-            this.Name = "Form1";
+            this.Name = "PagePrincipale";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Performance Graphiques";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
